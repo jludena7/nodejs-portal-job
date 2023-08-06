@@ -7,7 +7,10 @@ The small project is about a job portal where you can search and post job offers
 ## Setting
 Copy and rename the file from '.env.dist' to '.env', after that add the required configuration parameters such as database access and others.
 
-
-
+## Main requirements
+- NodeJs
+- Express
+- Handlebars
+- MongoDb
 
 
