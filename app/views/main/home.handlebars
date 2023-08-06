@@ -1,0 +1,27 @@
+<main class="job-offer-list">
+    <h2>List of jobs</h2>
+
+    {{#if jobOfferList.length}}
+        {{#each jobOfferList}}
+            <div class="job-offer">
+                <div class="box">
+                    <h3>{{company}}</h3>
+                    <p class="position">{{ title }}</p>
+                </div>
+                <div class="box">
+                    <p class="label">Location</p>
+                    <p class="name">{{location}}</p>
+                </div>
+                <div class="box">
+                    <p class="label">Contract</p>
+                    <p class="name contract">{{contract}}</p>
+                </div>
+                <div class="box vertical-center">
+                    <a href="/job-offer/{{url}}" class="btn btn-green">More Info</a>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>There are no job offers published</p>
+    {{/if}}
+</main>

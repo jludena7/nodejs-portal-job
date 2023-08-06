@@ -1,0 +1,50 @@
+<main class="pj-container">
+    <form action="/job-offer/update/{{jobOffer.url}}" method="post" class="default-form">
+        <h3>General Information</h3>
+        <div class="label">
+            <label>Title</label>
+            <input type="text" name="title" value="{{jobOffer.title}}" required>
+        </div>
+        <div class="label">
+            <label>Company</label>
+            <input type="text" name="company" value="{{jobOffer.company}}" required>
+        </div>
+        <div class="label">
+            <label>Location</label>
+            <input type="text" name="location" value="{{jobOffer.location}}" required>
+        </div>
+        <div class="label">
+            <label>Salary (USD)</label>
+            <input type="text" name="salary" value="{{jobOffer.salary}}" required>
+        </div>
+        <div class="label">
+            <label>Contract</label>
+            <select name="contract">
+                {{#contractType jobOffer.contract}}
+                    <option value="" disabled selected>-- Select --</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Project">Project</option>
+                {{/contractType}}
+            </select>
+        </div>
+        <h3>Description of position</h3>
+        <div class="label description">
+            <label>Description</label>
+            <input type="hidden" id="x" name="description" value="{{jobOffer.description}}">
+            <trix-editor input="x"></trix-editor>
+        </div>
+
+        <h3>Skills</h3>
+
+        <ul class="skill-list">
+            {{#selectSkills jobOffer.skills}}
+            {{/selectSkills}}
+        </ul>
+        <div class="label horizontal-center">
+            <input type="hidden" name="skills" id="skills">
+            <input type="submit" value="Update" class="btn btn-blue">
+        </div>
+    </form>
+</main>

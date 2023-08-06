@@ -1,0 +1,510 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; 
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    background-color: #100E17;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.6rem;
+}
+p {
+    font-size: 1.6rem;
+}
+/** Globales **/
+h1, h2, h3  {
+    color: #ffffff;
+    margin: 0;
+}
+h1 {
+    font-weight: 900;
+    font-size: 6rem;
+}
+h2 {
+    font-weight: 700;
+    font-size: 4rem;
+}
+h3 {
+    font-size: 2.8rem;
+}
+.pj-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.pj-separator {
+    padding-bottom: 2rem;
+    padding-top:2rem;
+    border-bottom: 1px solid #272727;
+}
+/** Botones **/
+.btn {
+    font-size: 1.8rem;
+    padding: 1.4rem 6rem;
+    border-radius: .6rem;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color .3s ease-out;
+    display: block;
+    border:none;
+}
+.btn-green {
+    background-color: #00C897;
+}
+.btn-green:hover {
+    background-color: rgb(10, 155, 119);
+}
+
+.btn-blue {
+    background-color: #00A4B6;
+}
+.btn-blue:hover {
+    background-color: rgb(3, 133, 148);
+}
+
+.btn-yellow {
+    background-color: #F6B15F;
+}
+.btn-red {
+    background-color: #C80045;
+}
+
+.edit-btn {
+    margin-top: 4rem;
+}
+.edit-btn {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+/** Header **/
+.tagline {
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin: 2rem 0 3rem 0;
+}
+
+.site-header {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 5rem;
+}
+
+.site-name {
+    display: flex;
+    justify-content: space-between;
+}
+.site-name a {
+    color: white;
+    text-decoration: none;
+}
+.search {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+.search form {
+    flex:1;
+    position: relative;
+}
+@media (min-width: 768px) {
+    .search form {
+        flex: 0 0 40%;
+    }
+}
+.search input[type="text"] {
+    background-color: rgba(255,255,255,.1);
+    width: 100%;
+    border: none;
+    padding: .5rem 4rem .5rem 2rem;
+    height: 5rem;
+    border-radius: 1rem;
+    color: white;
+    font-size: 1.2rem;
+}
+.search input[type="submit"] {
+    display: block;
+    text-indent: -9999px;
+    height: 30px;
+    width:30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-image: url(../img/lupa.png);
+    background-color: transparent;
+    border: none;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.search input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+@media (min-width:768px) {
+    .candidate,
+    .job-offer {
+        display: flex;
+    }
+    .box {
+        flex: 1;
+    }
+    .box:first-of-type{
+        flex: 2;
+    }
+}
+.candidate,
+.job-offer {
+    padding: 3rem 0;
+    border-bottom: 1px solid #272727;
+}
+.candidate,
+.job-offer:last-of-type{
+    border:none;
+}
+.box {
+    padding: .5rem 0;
+}
+.box p {
+    color: #ffffff;
+}
+.contract {
+    text-transform: capitalize;
+}
+.box .position,
+.box .label {
+    font-weight: 700;
+    color: #616065;
+    font-size: 2.6rem;
+    margin: 0;
+    text-align: left;
+}
+.box .label {
+    margin:1rem 0 0 0;
+}
+.box .name {
+    font-size: 2.4rem; 
+    margin: .5rem 0; 
+    text-align: left;
+}
+.box .btn {
+    text-align: center;
+}
+
+.vertical-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.horizontal-center {
+    display: flex;
+    justify-content: center;
+}
+
+.job-offer-container h2 {
+    color: #616065;
+    font-size: 2.4rem;
+}
+.top-content {
+    margin-bottom: 6rem;
+}
+@media (min-width:768px){
+    .job-offer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .job-offer-container main{
+        flex: 0 0 60%;
+    }
+    .job-offer-container aside {
+        flex: 0 0 calc(40% - 2rem);
+    }
+}
+.job-offer-description h1 {
+    line-height: 1.4;
+}
+.job-offer-description *{
+    color: white!important;
+    line-height: 2.2;
+}
+.skills {
+    color: white;
+}
+.skills li,
+.job-offer-description div  {
+    font-size: 1.8rem;
+    line-height: 2.4;
+}
+
+.send-data h2 {
+    font-size: 4rem;
+    color: white;
+}
+.send-data p {
+    color: white;
+    font-size: 1.8rem;
+}
+.send-data form {
+
+}
+
+/** Iniciar Sesión **/
+.default-form {
+    max-width: 800px;
+    margin: 4rem  auto 0 auto; 
+}
+.default-form h3 {
+    color: #616065;
+    font-size: 2.4rem;
+    margin-bottom: 3rem;
+}
+.default-form .label {
+    margin-bottom: 3rem;
+    display: flex;   
+}
+.default-form label {
+    padding-top: 1rem;
+    flex: 0 0 18rem;
+    font-size: 1.8rem;
+    color: white;
+    font-weight: 700;
+}
+.default-form input[type="email"],
+.default-form input[type="password"],
+.default-form input[type="text"],
+.default-form input[type="number"],
+.default-form input[type="file"],
+.default-form select,
+.default-form textarea  {
+    flex: 1;
+    height: 4.5rem;
+    padding: 1rem;
+    font-size: 1.8rem;
+    border-radius: 1rem;
+    border: none;
+} 
+
+.default-form input[type="file"] {
+    color: white;
+}
+trix-toolbar, 
+trix-editor {
+    background-color: white!important;
+}
+trix-toolbar {
+    padding: 1rem;
+}
+trix-editor {
+    font-size: 1.8rem;
+    min-height: 30rem!important;
+    padding: 2rem;
+}
+trix-editor h1, 
+trix-editor blockquote {
+    color: black;
+}
+trix-toolbar .trix-button-group {
+    margin-bottom: 0;
+}
+trix-toolbar .trix-button--icon-strike {
+    display: none;
+}
+.label.description {
+    display: block;
+}
+.label.description label {
+    display: block;
+    margin-bottom: 2rem;
+}
+.default-form input[type="submit"] {
+    margin-top: 2rem;
+}
+.default-form input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.default-form .actions {
+    display: flex;
+    justify-content: space-between;
+}
+.default-form a {
+    color: #616065;
+    text-decoration: none;
+}
+
+.skill-list {
+    list-style: none;
+    padding: 0;    
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.skill-list  li {
+    border: 2px solid #00C897;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    flex: 0 0 calc( 50% - 1rem);
+    text-align: center;
+    border-radius: 1rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.skill-list  li.active {
+    background-color: #00C897;
+}
+.skill-list  li:hover {
+    cursor: pointer;
+}
+
+@media (min-width:480px) {
+    .skill-list li {
+        flex: 0 0 calc( 33% - 1rem);
+    }
+}
+@media (min-width:768px) {
+    .skill-list li {
+        flex: 0 0 calc( 25% - 1rem);
+    }
+}
+@media (min-width:992px) {
+    .skill-list li {
+        flex: 0 0 calc( 20% - 1rem);
+    }
+}
+
+/** Admin **/
+
+p.candidates {
+    font-weight: 400;
+    color: white;
+    display: block;
+    font-size: 1.8rem;
+    margin: 1rem 0 0 0;
+    text-align: left!important;
+    text-decoration: none;
+    color: #616065;
+}
+.admin-profile {
+    width: 120px;
+    align-self: flex-start;
+    margin-right: 1rem;
+}
+.close-session p,
+.close-session a {
+    margin:  0 2rem 0 0 ;
+    color: #888;
+}
+.close-session {
+    margin-top: 2rem;
+    color: white;
+    display: flex;
+}
+.close-session img {
+        width: 80px;
+}
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 2rem 0 5rem 0;
+    margin-bottom: 5rem;
+}
+.buttons a {
+    margin-right: 2rem;
+}
+.candidate-list p,
+.job-offer-list p {
+    color: white;
+    text-align: center;
+}
+
+/** Alertas **/
+.swal2-popup {
+    width: 60rem!important;
+}
+.swal2-popup .swal2-title {
+    font-size: 3.4rem!important;
+}
+.swal2-content {
+    font-size: 2rem!important;
+}
+.swal2-popup .swal2-styled.swal2-cancel,
+.swal2-popup .swal2-styled.swal2-confirm {
+    font-size: 2rem!important;
+}
+
+/** Flash Messages **/
+.alerts {
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65px;
+}
+.alert {
+    padding: 1rem 3rem; 
+    color: white;
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: 700;
+    margin-top: .3rem;
+}
+.success {
+    background-color: #00C897;
+}
+.error {
+    background-color: #C80045;
+}
+.disappear {
+    opacity: 0;
+}
+
+
+
+/** Biografia Vacante **/
+.recruiter-info h2 {
+    color: #616065;
+    font-size: 2.4rem;
+}
+.recruiter-info img {
+    max-width: 300px;
+    width: 100%;
+}
+.recruiter-data {
+    border-top: 3px solid #272727;
+    padding: 5rem 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+}
+.recruiter-data p {
+    font-size: 2.4rem;
+    color: white;
+}
+@media (min-width:768px){
+    .send-data {
+        flex: 0 0 calc(70% - 1rem);
+    }
+    .recruiter-info {
+        flex: 0 0 calc(30% - 1rem );
+    }
+}
+.send-data h2 {
+    font-size: 4rem;
+    color: white;
+}
+.send-data p {
+    color: white;
+    font-size: 1.8rem;
+}

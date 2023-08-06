@@ -1,0 +1,61 @@
+<div class="top-content job-offer pj-container">
+    <div class="box">
+        <p class="label">Company</p>
+        <p class="name">{{jobOffer.company}}</p>
+    </div>
+    <div class="box">
+        <p class="label">Location</p>
+        <p class="name">{{jobOffer.location}}</p>
+    </div>
+    <div class="box">
+        <p class="label">Contract</p>
+        <p class="name contract">{{jobOffer.contract}}</p>
+    </div>
+    <div class="box">
+        <p class="label">Salary</p>
+        <p class="name">$ {{jobOffer.salary}}</p>
+    </div>
+</div>
+
+<div class="job-offer-container pj-container">
+    <main class="pj-container">
+        <h2>Description of position</h2>
+        <div class="job-offer-description">
+            {{{jobOffer.description}}}
+        </div>
+        <a href="/job-offer/edit/{{jobOffer.url}}" class="btn btn-blue edit-btn">Edit Job Offer</a>
+    </main>
+    <aside class="sidebar">
+        <h2>Skills valued</h2>
+        <ul class="skills">
+            {{#each jobOffer.skills}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </aside>
+</div>
+
+<div class="pj-container recruiter-data">
+    <div class="send-data">
+        <h2>Contact Recruiter</h2>
+        <p>Fill out the following form, upload your curriculum, and we will contact you soon</p>
+
+        <form method="POST" action="/job-offer/{{jobOffer.url}}" class="default-form" enctype="multipart/form-data">
+            <div class="box">
+                <label>Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="box">
+                <label>E-mail</label>
+                <input type="email" name="email">
+            </div>
+            <div class="box">
+                <label>CV (PDF)</label>
+                <input type="file" name="cv">
+            </div>
+            <div class="box">
+                <input type="submit" class="btn btn-green" value="Send">
+            </div>
+        </form>
+    </div>
+</div>
