@@ -17,4 +17,18 @@ module.exports = {
             new RegExp(` value="${selected}"`), '$& selected="selected"'
         )
     },
+    showErrorValidations: (errors = {}, alerts ) => {
+        const categories = Object.keys(errors);
+        let html = '';
+        if(categories.length) {
+            categories.forEach(category => {
+                errors[category].forEach(message => {
+                    html += `<div class="${category} alert">
+                    ${message}
+                </div>`;
+                });
+            });
+        }
+        return alerts.fn().html = html;
+    }
 };

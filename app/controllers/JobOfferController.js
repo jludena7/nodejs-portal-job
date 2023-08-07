@@ -1,19 +1,28 @@
 const mongoose = require('mongoose');
+const { validationResult } = require('express-validator');
 const JobOffer = mongoose.model('JobOffer');
 
 exports.create = async (req, res) => {
     res.render('job-offer/create', {
-        selectSkills: {},
         pageTitle : 'Create New Job Offer',
         tagLine: 'Register information of the new vacancy',
     });
 };
 
-exports.store = async (req, res) => {
+exports.store = async (req, res, next) => {
+    let validResult = validationResult(req);
+    if (!validResult.isEmpty()) {
+        req.flash('errors', validResult.array().map(error => error.msg));
+        return res.redirect('/job-offer/create');
+    }
+
     const jobOffer = new JobOffer(req.body);
     jobOffer.skills = req.body.skills.split(',');
 
     const newJobOffer = await jobOffer.save();
+    if (!newJobOffer) {
+        return next();
+    }
 
     res.redirect(`/job-offer/${newJobOffer.url}`);
 };
@@ -31,6 +40,12 @@ exports.edit = async (req, res, next) => {
 };
 
 exports.update = async (req, res, next) => {
+    let validResult = validationResult(req);
+    if (!validResult.isEmpty()) {
+        req.flash('errors', validResult.array().map(error => error.msg));
+        return res.redirect(`/job-offer/edit/${req.params.url}`);
+    }
+
     const data = req.body;
     data.skills = req.body.skills.split(',');
 

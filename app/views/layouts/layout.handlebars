@@ -38,6 +38,13 @@
     </header>
 
     <div class="pj-container">
+        {{#if errorValidations }}
+            <div class="alerts">
+                {{#showErrorValidations errorValidations }}
+                    <li>do</li>
+                {{/showErrorValidations}}
+            </div>
+        {{/if}}
         {{{body}}}
     </div>
 

@@ -8,10 +8,12 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const connectMongo = require('connect-mongo');
 const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 require('dotenv').config({path: '.env'});
 
 const app = express();
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.engine('handlebars',
@@ -35,6 +37,13 @@ app.use(session({
         client: mongoose.connection.getClient()
     })
 }));
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.errorValidations = req.flash();
+    next();
+});
+
 app.use('/', router());
 
 app.listen(process.env.APP_PORT);

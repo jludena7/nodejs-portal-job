@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
         skills.addEventListener('click', addSkills);
         skillsSelected();
     }
+
+    let alerts = document.querySelector('.alerts');
+    if(alerts) {
+        clearAlerts();
+    }
 });
 
 const addSkills = (e) => {
@@ -32,4 +37,16 @@ const skillsSelected = () => {
 
     const skillsArray = [...skillsSet]
     document.querySelector('#skills').value = skillsArray;
+}
+
+const clearAlerts = () => {
+    const alerts = document.querySelector('.alerts');
+    const interval = setInterval(() => {
+        if(alerts.children.length > 0 ) {
+            alerts.removeChild(alerts.children[0]);
+        } else if (alerts.children.length === 0 ) {
+            alerts.parentElement.removeChild(alerts);
+            clearInterval(interval);
+        }
+    }, 4000);
 }

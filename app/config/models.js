@@ -7,3 +7,4 @@ mongoose.connection.on('error', (error) => {
 });
 
 require('../models/JobOffer');
+require('../models/User');

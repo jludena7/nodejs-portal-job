@@ -463,7 +463,7 @@ p.candidates {
 .success {
     background-color: #00C897;
 }
-.error {
+.errors {
     background-color: #C80045;
 }
 .disappear {
