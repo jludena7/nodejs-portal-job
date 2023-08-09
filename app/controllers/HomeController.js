@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const JobOffer = mongoose.model('JobOffer');
 
-exports.showJobs = async (req, res, next) => {
+exports.showJobOffer = async (req, res, next) => {
     const jobOfferList = await JobOffer.find().lean();
     if (!jobOfferList) {
         return next();
@@ -12,6 +12,6 @@ exports.showJobs = async (req, res, next) => {
         tagLine: 'Find and Post Jobs for Web Developers',
         bar: true,
         publishVacancy: true,
-        jobOfferList: jobOfferList
+        jobOfferList: jobOfferList,
     });
 };

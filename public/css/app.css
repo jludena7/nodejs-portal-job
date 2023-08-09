@@ -395,10 +395,16 @@ p.candidates {
     text-decoration: none;
     color: #616065;
 }
-.admin-profile {
+.image-profile {
     width: 120px;
     align-self: flex-start;
     margin-right: 1rem;
+}
+.image-profile-min {
+    width: 20px;
+    align-self: flex-start;
+    margin-right: 1rem;
+    border-radius: 50%;
 }
 .close-session p,
 .close-session a {
@@ -411,7 +417,7 @@ p.candidates {
     display: flex;
 }
 .close-session img {
-        width: 80px;
+    width: 20px;
 }
 .buttons {
     display: flex;
@@ -464,6 +470,9 @@ p.candidates {
     background-color: #00C897;
 }
 .errors {
+    background-color: #C80045;
+}
+.error {
     background-color: #C80045;
 }
 .disappear {

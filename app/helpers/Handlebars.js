@@ -1,3 +1,6 @@
+const Storage = require('./Storage');
+require('dotenv').config({path: '.env'});
+
 module.exports = {
     selectSkills : (selected = [], options) => {
 
@@ -17,7 +20,7 @@ module.exports = {
             new RegExp(` value="${selected}"`), '$& selected="selected"'
         )
     },
-    showErrorValidations: (errors = {}, alerts ) => {
+    showErrorValidations: (errors = {}, alerts) => {
         const categories = Object.keys(errors);
         let html = '';
         if(categories.length) {
@@ -30,5 +33,11 @@ module.exports = {
             });
         }
         return alerts.fn().html = html;
+    },
+    pathProfileImage: () => {
+        return Storage.config().profile.pathDown;
+    },
+    getAppName: () => {
+        return process.env.APP_NAME;
     }
 };

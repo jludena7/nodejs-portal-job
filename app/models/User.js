@@ -46,7 +46,7 @@ UserSchema.post('save', function(error, doc, next) {
 
 // Auth user
 UserSchema.methods = {
-    validateRepeatPassword: function(password) {
+    validateLoginPassword: function(password) {
         return bcrypt.compareSync(password, this.password);
     }
 }

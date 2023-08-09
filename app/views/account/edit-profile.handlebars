@@ -1,0 +1,28 @@
+<main class="pj-container">
+    <form action="/account/update-profile" method="post" class="default-form" enctype="multipart/form-data">
+        <div class="label">
+            <label for="name">Name</label>
+            <input value="{{user.name}}" type="text" name="name" id="name">
+        </div>
+        <div class="label">
+            <label for="email">Email</label>
+            <label for="email">{{user.email}}</label>
+        </div>
+        <div class="label">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="label">
+            <label for="repeat_password">Repeat Password</label>
+            <input type="password" name="repeat_password" id="repeat_password">
+        </div>
+        <div class="label">
+            <label>Image</label>
+            <input type="file" name="image">
+            <img src="{{ pathProfileImage }}/{{user.image}}" class="image-profile" alt="Profile" onerror="this.src='/img/avatar-user.jpg'">
+        </div>
+        <div class="label">
+            <input type="submit" class="btn btn-blue" value="Update">
+        </div>
+    </form>
+</main>

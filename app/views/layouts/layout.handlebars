@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="/css/trix.css">
-    <link rel="stylesheet" href="/css/app.css">
-    <title>Portal Jobs</title>
+    <link rel="stylesheet" href="/css/app.css?v=1">
+    <title>{{getAppName}}</title>
 </head>
 <body>
 
     <div class="site-name pj-container">
         <h1>
-            <a href="/">Portal Jobs</a>
+            <a href="/">{{getAppName}}</a>
         </h1>
 
         {{#if bar}}
@@ -22,6 +22,16 @@
                     <input type="text" name="q" class="search">
                     <input type="submit" value="Search">
                 </form>
+            </div>
+        {{/if}}
+        {{#if userAuth.active}}
+            <div class="close-session">
+                {{#if userAuth.image}}
+                    <img src="{{ pathProfileImage }}/{{userAuth.image}}" class="image-profile-min" onerror="this.src='/img/avatar-user.jpg'">
+                {{/if}}
+                <p>Hi! {{userAuth.name}}</p>
+                <a href="/account/dashboard">Dashboard</a>
+                <a href="/login/delete">Logout</a>
             </div>
         {{/if}}
     </div>

@@ -21,7 +21,7 @@
     <main class="pj-container">
         <h2>Description of position</h2>
         <div class="job-offer-description">
-            {{{jobOffer.description}}}
+            {{{ jobOffer.description }}}
         </div>
         <a href="/job-offer/edit/{{jobOffer.url}}" class="btn btn-blue edit-btn">Edit Job Offer</a>
     </main>
@@ -42,12 +42,12 @@
 
         <form method="POST" action="/job-offer/{{jobOffer.url}}" class="default-form" enctype="multipart/form-data">
             <div class="box">
-                <label>Name</label>
-                <input type="text" name="name">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
             </div>
             <div class="box">
-                <label>E-mail</label>
-                <input type="email" name="email">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
             </div>
             <div class="box">
                 <label>CV (PDF)</label>

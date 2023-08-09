@@ -11,6 +11,7 @@ const JobOfferSchema = new mongoose.Schema({
     },
     company: {
         type: String,
+        required: 'Company is required',
         trim: true
     },
     location: {
@@ -29,7 +30,7 @@ const JobOfferSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: 'Title is required',
+        required: 'Description is required',
         trim: true
     },
     url: {
@@ -37,11 +38,16 @@ const JobOfferSchema = new mongoose.Schema({
         lowercase: true
     },
     skills: [String],
-    candidate: [{
+    candidates: [{
         name: String,
         email: String,
         cv: String
-    }]
+    }],
+    author : {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: 'Author is required'
+    }
 });
 
 JobOfferSchema.pre('save', function (next) {

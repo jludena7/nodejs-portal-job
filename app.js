@@ -9,6 +9,7 @@ const session = require('express-session');
 const connectMongo = require('connect-mongo');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const passport = require('./app/helpers/Passport');
 require('dotenv').config({path: '.env'});
 
 const app = express();
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.engine('handlebars',
     engine({
         defaultLayout: 'layout',
-        helpers: require('./app/helpers/handlebars')
+        helpers: require('./app/helpers/Handlebars')
     })
 );
 app.set('view engine', 'handlebars');
@@ -37,6 +38,10 @@ app.use(session({
         client: mongoose.connection.getClient()
     })
 }));
+
+app.use(passport.initialize({}));
+app.use(passport.session({}));
+
 app.use(flash());
 
 app.use((req, res, next) => {

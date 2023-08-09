@@ -1,0 +1,36 @@
+<main class="job-offer-list">
+    <h2>Navigation</h2>
+    <div class="buttons pj-separator">
+        <a href="/account/edit-profile" class="btn btn-blue">Edit Profile</a>
+        <a href="/job-offer/create" class="btn btn-green">Create New Job Offer</a>
+    </div>
+
+    <h2>Your Job Offer</h2>
+
+    <div class="panel-grid">
+        {{#if jobOfferList.length}}
+            {{#each jobOfferList}}
+                <div class="job-offer">
+                    <div class="box">
+                        <h3>{{company}}</h3>
+                        <p class="position">{{title}}</p>
+                        <p class="candidates">
+                            {{candidates.length}} Candidate(s)
+                        </p>
+                    </div>
+                    <div class="vertical-center box">
+                        <a href="/candidates/{{_id}}" class="btn btn-yellow">Candidates</a>
+                    </div>
+                    <div class="vertical-center box">
+                        <a href="/job-offer/edit/{{url}}" class="btn btn-green">Edit</a>
+                    </div>
+                    <div class="vertical-center box">
+                        <a href="#" data-delete="{{_id}}" class="btn btn-red">Delete</a>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <p>There are no job offers published, you can start creating</p>
+        {{/if}}
+    </div>
+</main>
