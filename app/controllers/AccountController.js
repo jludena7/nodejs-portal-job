@@ -73,25 +73,24 @@ exports.updateProfile = async (req, res) => {
         await user.save();
         req.flash('success', ['The data was updated successfully']);
     } catch (error) {
-        console.log(error);
         req.flash('errors', [error]);
     }
 
     return res.redirect('/account/edit-profile');
 };
 
-const upload = multer(Storage.defineActions()).single('image');
+const upload = multer(Storage.defineActions().profile).single('image');
 exports.uploadImage = (req, res, next) => {
     upload(req, res, function(error) {
         if(error) {
             if(error instanceof multer.MulterError) {
                 if(error.code === 'LIMIT_FILE_SIZE') {
-                    req.flash('error', 'The file is very large: Maximum 100kb');
+                    req.flash('errors', ['The file is very large: Maximum 100kb']);
                 } else {
-                    req.flash('error', error.message);
+                    req.flash('errors', [error.message]);
                 }
             } else {
-                req.flash('error', error.message);
+                req.flash('errors', [error.message]);
             }
             return res.redirect('/account/dashboard');
         } else {

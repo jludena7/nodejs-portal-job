@@ -40,7 +40,7 @@
         <h2>Contact Recruiter</h2>
         <p>Fill out the following form, upload your curriculum, and we will contact you soon</p>
 
-        <form method="POST" action="/job-offer/{{jobOffer.url}}" class="default-form" enctype="multipart/form-data">
+        <form method="post" action="/candidate/job-offer/{{jobOffer.url}}" class="default-form" enctype="multipart/form-data">
             <div class="box">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name">
@@ -57,5 +57,14 @@
                 <input type="submit" class="btn btn-green" value="Send">
             </div>
         </form>
+    </div>
+    <div class="recruiter-info">
+        <h2>Recruiter Information</h2>
+        {{#if jobOffer.author.name}}
+            <p>{{jobOffer.author.name}}</p>
+        {{/if}}
+        {{#if jobOffer.author.image}}
+            <img src="{{pathProfileImage}}/{{jobOffer.author.image}}" class="image-profile" alt="Profile" onerror="this.src='/img/avatar-user.jpg'">
+        {{/if}}
     </div>
 </div>

@@ -1,7 +1,4 @@
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
 const passport = require('passport');
-const { validationResult } = require('express-validator');
 
 exports.createLogin = async (req, res) => {
     res.render('login/create', {

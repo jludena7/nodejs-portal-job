@@ -6,11 +6,14 @@ const JobOfferValidator = require('../controllers/validator/JobOfferValidator');
 const UserValidator = require('../controllers/validator/UserValidator');
 const AuthController = require('../controllers/AuthController');
 const AccountController = require('../controllers/AccountController');
+const CandidateController = require('../controllers/CandidateController');
+const CandidateValidator = require('../controllers/validator/CandidateValidator');
 const UserAuth = require('../helpers/UserAuth');
 
 module.exports = () => {
     router.get('/', HomeController.showJobOffer);
     router.get('/job-offer/:url', JobOfferController.details);
+    router.post('/candidate/job-offer/:url', CandidateController.uploadCV, CandidateValidator.contactValidator, CandidateController.storeContact);
 
     router.get('/login', AuthController.createLogin);
     router.get('/login/create', AuthController.createLogin);

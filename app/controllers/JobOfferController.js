@@ -69,7 +69,7 @@ exports.update = async (req, res, next) => {
 };
 
 exports.details = async (req, res, next) => {
-    const jobOffer = await JobOffer.findOne({url: req.params.url}).lean();
+    const jobOffer = await JobOffer.findOne({url: req.params.url}).populate('author').lean();
     if(!jobOffer) {
         return next();
     }

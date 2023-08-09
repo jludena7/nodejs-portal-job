@@ -7,7 +7,7 @@ exports.showJobOffer = async (req, res, next) => {
         return next();
     }
 
-    res.render('main/home', {
+    res.render('home/job-offer-list', {
         pageTitle : 'Job Offer List',
         tagLine: 'Find and Post Jobs for Web Developers',
         bar: true,
