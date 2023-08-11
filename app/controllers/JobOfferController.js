@@ -32,7 +32,11 @@ exports.store = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
     const jobOffer = await JobOffer.findOne({ url: req.params.url }).lean();
-    if(!jobOffer) {
+    if (!jobOffer) {
+        return next();
+    }
+
+    if (!UserAuth.verifyAuthor(req, jobOffer.author)) {
         return next();
     }
 
@@ -53,14 +57,23 @@ exports.update = async (req, res, next) => {
         return res.redirect(`/job-offer/edit/${req.params.url}`);
     }
 
+    const jobOffer = await JobOffer.findOne({url: req.params.url});
+    if(!jobOffer) {
+        return next();
+    }
+
+    if (!UserAuth.verifyAuthor(req, jobOffer.author)) {
+        return next();
+    }
+
     const data = req.body;
     data.skills = req.body.skills.split(',');
-
     const updateJobOffer = await JobOffer.findOneAndUpdate(
         { url: req.params.url },
         data,
         {new: true, runValidators: true}
     );
+
     if(!updateJobOffer) {
         return next();
     }
@@ -86,10 +99,11 @@ exports.delete = async (req, res, next) => {
         return next();
     }
     const jobOffer = await JobOffer.findById(req.params.id);
-    if(UserAuth.verifyAuthor(req, jobOffer.author)){
-        await JobOffer.findByIdAndRemove(req.params.id);
-        res.status(200).send('Job offer was deleted');
-    } else {
-        res.status(403).send('Error')
+
+    if (!UserAuth.verifyAuthor(req, jobOffer.author)) {
+        return res.status(403).send('Error')
     }
+
+    await JobOffer.findByIdAndRemove(req.params.id);
+    return res.status(200).send('Job offer was deleted');
 };

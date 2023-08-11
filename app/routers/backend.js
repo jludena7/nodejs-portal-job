@@ -13,7 +13,7 @@ const UserAuth = require('../helpers/UserAuth');
 module.exports = () => {
     router.get('/', HomeController.showJobOffer);
     router.get('/job-offer/:url', JobOfferController.details);
-    router.post('/candidate/job-offer/:url', CandidateController.uploadCV, CandidateValidator.contactValidator, CandidateController.storeContact);
+    router.post('/candidate/create/job-offer/:url', CandidateController.uploadCV, CandidateValidator.contactValidator, CandidateController.storeContact);
 
     router.get('/login', AuthController.createLogin);
     router.get('/login/create', AuthController.createLogin);
