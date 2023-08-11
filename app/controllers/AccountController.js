@@ -9,7 +9,7 @@ const { validationResult } = require('express-validator');
 exports.dashboard = async (req, res) => {
     const jobOfferList = await JobOffer.find({author: req.user._id}).lean();
 
-    res.render('account/dashboard', {
+    res.render('job-offer/list', {
         pageTitle : 'Dashboard',
         tagLine: 'Welcome to the dashboard',
         userAuth: UserAuth.userSession(req),
