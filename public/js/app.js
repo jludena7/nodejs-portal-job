@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if(jobOfferList){
         jobOfferList.addEventListener('click', actionsGrid);
     }
+
+    const logout = document.getElementById('deleteLink');
+    if (logout) {
+        logout.addEventListener('click', actionLogout);
+    }
 });
 
 const addSkills = (e) => {
@@ -95,11 +100,47 @@ const actionsGrid = e => {
                             type:'error',
                             title: 'There was a error',
                             text: 'Could not delete'
-                        })
-                    })
+                        });
+                    });
             }
-        })
+        });
     }  else if(e.target.tagName === 'A') {
         window.location.href = e.target.href;
     }
+};
+
+const actionLogout = e => {
+    e.preventDefault();
+
+    //Delete through axios
+    Swal.fire({
+        title: 'Confirm Logout?',
+        text: "You will be close session",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText : 'Cancel'
+    }).then((result) => {
+        if (result.value) {
+            //Send request through axios
+            const url = `${location.origin}/login/delete`;
+
+            // Axios to delete data
+            axios.delete(url, {params: {url}})
+                .then(function(response) {
+                    if(response.status === 200) {
+                        window.location.href = response.data.url;
+                    }
+                })
+                .catch(() => {
+                    Swal.fire({
+                        type:'error',
+                        title: 'There was a error',
+                        text: 'Could not logout'
+                    });
+                });
+        }
+    });
 };

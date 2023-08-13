@@ -107,3 +107,16 @@ exports.delete = async (req, res, next) => {
     await JobOffer.findByIdAndRemove(req.params.id);
     return res.status(200).send('Job offer was deleted');
 };
+
+exports.search = async (req, res, next) => {
+    const jobOffer = await JobOffer.findOne({url: req.params.url}).populate('author').lean();
+    if(!jobOffer) {
+        return next();
+    }
+
+    res.render('job-offer/details', {
+        jobOffer,
+        pageTitle : 'Details Job Offer',
+        userAuth: UserAuth.userSession(req),
+    });
+};

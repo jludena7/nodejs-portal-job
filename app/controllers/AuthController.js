@@ -19,14 +19,14 @@ exports.storeLogin = passport.authenticate('local', {
     badRequestMessage : 'Email and password are required'
 });
 
-exports.deleteLogin = (req, res, next) => {
+exports.deleteLogin = (req, res) => {
     req.logout(function (error) {
         if (error) {
-            return next(error);
+            return res.status(error.code).json({message: error.message})
         }
 
         req.flash('success_msg', ['Session terminated']);
-        res.redirect('/login/create');
+        return res.json({url: `${process.env.BASE_URL}/login/create`});
     });
 };
 
