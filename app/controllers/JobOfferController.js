@@ -109,14 +109,21 @@ exports.delete = async (req, res, next) => {
 };
 
 exports.search = async (req, res, next) => {
-    const jobOffer = await JobOffer.findOne({url: req.params.url}).populate('author').lean();
-    if(!jobOffer) {
+    const jobOfferList = await JobOffer.find({
+        $text : {
+            $search : req.query.text
+        }
+    }).lean();
+
+    if (!jobOfferList) {
         return next();
     }
 
-    res.render('job-offer/details', {
-        jobOffer,
-        pageTitle : 'Details Job Offer',
-        userAuth: UserAuth.userSession(req),
+    res.render('home/job-offer-published', {
+        pageTitle : 'Job Offer List',
+        tagLine: `Results for the search: ${req.query.text}`,
+        bar: true,
+        publishVacancy: true,
+        jobOfferList: jobOfferList,
     });
 };

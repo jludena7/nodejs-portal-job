@@ -57,4 +57,6 @@ JobOfferSchema.pre('save', function (next) {
     next();
 });
 
+JobOfferSchema.index({title : 'text'});
+
 module.exports = mongoose.model('JobOffer', JobOfferSchema);
