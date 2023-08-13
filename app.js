@@ -9,6 +9,7 @@ const session = require('express-session');
 const connectMongo = require('connect-mongo');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const httpError = require('http-errors');
 const passport = require('./app/helpers/Passport');
 require('dotenv').config({path: '.env'});
 
@@ -50,5 +51,14 @@ app.use((req, res, next) => {
 });
 
 app.use('/', router());
-
+app.use((req, res, next) => {
+    next(httpError(404, 'Page not found'));
+});
+app.use((error, req, res, next) => {
+    res.locals.errorMessage = error.message;
+    const status = error.status || 500;
+    res.locals.errorStatus = status;
+    res.status(status);
+    res.render('error');
+});
 module.exports = app;
