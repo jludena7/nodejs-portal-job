@@ -13,15 +13,20 @@ const UserAuth = require('../helpers/UserAuth');
 module.exports = () => {
     router.get('/', HomeController.showJobOffer);
     router.get('/job-offer/:url', JobOfferController.details);
-    router.post('/candidate/create/job-offer/:url', CandidateController.uploadCV, CandidateValidator.contactValidator, CandidateController.storeContact);
+    router.post('/candidate-store/job-offer/:url', CandidateController.uploadCV, CandidateValidator.contactValidator, CandidateController.storeContact);
+    router.get('/candidate-list/job-offer/:id', CandidateController.candidateList);
 
     router.get('/login', AuthController.createLogin);
     router.get('/login/create', AuthController.createLogin);
     router.post('/login/store', AuthController.storeLogin);
     router.get('/login/delete', AuthController.deleteLogin);
+    router.get('/forgot-password/create', AuthController.createForgotPassword);
+    router.post('/forgot-password/store', UserValidator.forgotPassword, AuthController.storeForgotPassword);
+    router.get('/reset-password/:token', AuthController.createResetPassword);
+    router.post('/reset-password/store', UserValidator.resetPassword, AuthController.storeResetPassword);
 
     router.get('/account/dashboard', UserAuth.isLogin, AccountController.dashboard);
-    router.get('/account/create-profile', UserAuth.isLogin, AccountController.createProfile);
+    router.get('/account/create-profile', AccountController.createProfile);
     router.post('/account/store-profile', UserAuth.isLogin, UserValidator.insertValidator, AccountController.storeProfile);
     router.get('/account/edit-profile', UserAuth.isLogin, AccountController.editProfile);
     router.post('/account/update-profile', UserAuth.isLogin, AccountController.uploadImage, UserValidator.updateValidator, AccountController.updateProfile);

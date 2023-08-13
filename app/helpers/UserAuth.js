@@ -3,7 +3,7 @@ exports.isLogin = (req, res, next) => {
         return next();
     }
 
-    res.redirect('/login/create');
+    return res.redirect('/login/create');
 }
 
 exports.userSession = (req) => {

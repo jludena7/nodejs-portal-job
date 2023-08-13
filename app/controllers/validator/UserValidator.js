@@ -18,3 +18,18 @@ exports.updateValidator = async (req, res, next) => {
 
     return next();
 };
+
+exports.forgotPassword = async (req, res, next) => {
+    await check('email').isEmail().withMessage('Email format invalid').stripLow().run(req);
+    return next();
+};
+
+exports.resetPassword = async (req, res, next) => {
+    await check('token').notEmpty().withMessage('Link reset password is invalid').stripLow().run(req);
+    if (req.body.password) {
+        await check('password').isLength({min: 6}).withMessage('Password should have minimum 6 character').run(req);
+        await check('repeat_password').equals(req.body.password).withMessage('Repeat Password should be same Password').run(req);
+    }
+
+    return next();
+};

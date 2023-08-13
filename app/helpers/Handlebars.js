@@ -37,6 +37,9 @@ module.exports = {
     pathProfileImage: () => {
         return Storage.config().profile.pathDown;
     },
+    pathCvFile: () => {
+        return Storage.config().cv.pathDown;
+    },
     getAppName: () => {
         return process.env.APP_NAME;
     }

@@ -3,6 +3,7 @@ const JobOffer = require('../models/JobOffer');
 const Storage = require('../helpers/Storage');
 const AuthUser = require('../helpers/UserAuth');
 const multer = require('multer');
+const UserAuth = require('../helpers/UserAuth');
 
 const upload = multer(Storage.defineActions().cv).single('cv');
 exports.uploadCV  =  (req, res, next) => {
@@ -48,7 +49,24 @@ exports.storeContact = async (req, res, next) => {
     jobOffer.candidates.push(newCandidate);
     await jobOffer.save();
 
-    req.flash('success', 'Your CV was sent successfully');
+    req.flash('success', ['Your CV was sent successfully']);
 
     res.redirect(`/job-offer/${jobOffer.url}`);
+};
+
+exports.candidateList = async (req, res, next) => {
+    const jobOffer = await JobOffer.findById(req.params.id).lean();
+    if(!jobOffer) {
+        return next();
+    }
+
+    if (!AuthUser.verifyAuthor(req, jobOffer.author)) {
+        next();
+    }
+
+    res.render('candidate/list', {
+        pageTitle : `Candidates for job offer as ${jobOffer.title}`,
+        userAuth: UserAuth.userSession(req),
+        candidates: jobOffer.candidates,
+    });
 };
