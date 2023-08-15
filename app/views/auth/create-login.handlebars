@@ -1,5 +1,6 @@
 <main class="pj-container">
     <form action="/login/store" method="post" class="default-form">
+        <input type="hidden" name="_csrf"  value="{{_csrfToken}}">
         <div class="label">
             <label for="email">Email</label>
             <input type="email" name="email" id="email">

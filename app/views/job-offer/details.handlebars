@@ -40,7 +40,7 @@
         <h2>Contact Recruiter</h2>
         <p>Fill out the following form, upload your curriculum, and we will contact you soon</p>
 
-        <form method="post" action="/candidate-store/job-offer/{{jobOffer.url}}" class="default-form" enctype="multipart/form-data">
+        <form method="post" action="/candidate-store/job-offer/{{jobOffer.url}}?_csrf={{_csrfToken}}" class="default-form" enctype="multipart/form-data">
             <div class="box">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name">

@@ -11,12 +11,13 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const httpError = require('http-errors');
 const passport = require('./app/helpers/Passport');
+const csrf = require('csurf');
 require('dotenv').config({path: '.env'});
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.engine('handlebars',
     engine({
@@ -28,6 +29,12 @@ app.set('view engine', 'handlebars');
 app.set('views', './app/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+
+app.use(csrf({cookie:true}));
+app.use((req, res, next) => {
+    res.locals._csrfToken = req.csrfToken();
+    next();
+});
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -59,6 +66,6 @@ app.use((error, req, res, next) => {
     const status = error.status || 500;
     res.locals.errorStatus = status;
     res.status(status);
-    res.render('error');
+    return res.render('error');
 });
 module.exports = app;

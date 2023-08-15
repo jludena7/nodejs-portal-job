@@ -8,7 +8,7 @@ require('dotenv').config({path: '.env'});
 exports.createLogin = async (req, res) => {
     res.render('auth/create-login', {
         pageTitle : 'Login User',
-        tagLine: 'Login to post job offers',
+        tagLine: 'Login to post job offers'
     });
 };
 

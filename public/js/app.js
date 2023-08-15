@@ -3,6 +3,10 @@ import Swal from 'sweetalert2';
 
 const skillsSet = new Set();
 
+const getCsrfToken = () => {
+    return document.querySelector('meta[name="csrf_token"]').content;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const skills = document.querySelector('.skill-list');
     if (skills) {
@@ -82,7 +86,7 @@ const actionsGrid = e => {
                 const url = `${location.origin}/job-offer/delete/${e.target.dataset.delete}`;
 
                 // Axios to delete data
-                axios.delete(url, {params: {url}})
+                axios.delete(url, {params: {url}, headers: {'X-CSRF-TOKEN': getCsrfToken()}})
                     .then(function(response) {
                         if(response.status === 200) {
                             Swal.fire(
@@ -127,8 +131,9 @@ const actionLogout = e => {
             //Send request through axios
             const url = `${location.origin}/login/delete`;
 
+            console.log(getCsrfToken());
             // Axios to delete data
-            axios.delete(url, {params: {url}})
+            axios.delete(url, {params: {url}, headers: {'X-CSRF-TOKEN': getCsrfToken()}})
                 .then(function(response) {
                     if(response.status === 200) {
                         window.location.href = response.data.url;

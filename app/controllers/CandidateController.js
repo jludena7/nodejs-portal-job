@@ -1,9 +1,8 @@
 const {validationResult} = require('express-validator');
 const JobOffer = require('../models/JobOffer');
 const Storage = require('../helpers/Storage');
-const AuthUser = require('../helpers/UserAuth');
 const multer = require('multer');
-const UserAuth = require('../helpers/UserAuth');
+const UserAuth = require('../middleware/UserAuth');
 
 const upload = multer(Storage.defineActions().cv).single('cv');
 exports.uploadCV  =  (req, res, next) => {
@@ -51,7 +50,7 @@ exports.storeContact = async (req, res, next) => {
 
     req.flash('success', ['Your CV was sent successfully']);
 
-    res.redirect(`/job-offer/${jobOffer.url}`);
+    res.redirect(`/job-offer/detail/${jobOffer.url}`);
 };
 
 exports.candidateList = async (req, res, next) => {
@@ -60,8 +59,8 @@ exports.candidateList = async (req, res, next) => {
         return next();
     }
 
-    if (!AuthUser.verifyAuthor(req, jobOffer.author)) {
-        next();
+    if (!UserAuth.verifyAuthor(req, jobOffer.author)) {
+        return next();
     }
 
     res.render('candidate/list', {

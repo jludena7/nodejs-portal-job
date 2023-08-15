@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
-const UserAuth = require('../helpers/UserAuth');
+const UserAuth = require('../middleware/UserAuth');
 const JobOffer = mongoose.model('JobOffer');
 
 exports.create = async (req, res) => {
@@ -27,7 +27,8 @@ exports.store = async (req, res, next) => {
         return next();
     }
 
-    res.redirect(`/job-offer/${newJobOffer.url}`);
+    req.flash('success', ['Job offer information was stored successfully']);
+    res.redirect(`/job-offer/detail/${newJobOffer.url}`);
 };
 
 exports.edit = async (req, res, next) => {
@@ -78,7 +79,8 @@ exports.update = async (req, res, next) => {
         return next();
     }
 
-    res.redirect(`/job-offer/${updateJobOffer.url}`);
+    req.flash('success', ['Job offer information was updated successfully']);
+    res.redirect(`/job-offer/edit/${updateJobOffer.url}`);
 };
 
 exports.details = async (req, res, next) => {
@@ -101,7 +103,7 @@ exports.delete = async (req, res, next) => {
     const jobOffer = await JobOffer.findById(req.params.id);
 
     if (!UserAuth.verifyAuthor(req, jobOffer.author)) {
-        return res.status(403).send('Error')
+        return res.status(403).send('Error');
     }
 
     await JobOffer.findByIdAndRemove(req.params.id);

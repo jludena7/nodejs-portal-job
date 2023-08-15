@@ -8,7 +8,7 @@ const AuthController = require('../controllers/AuthController');
 const AccountController = require('../controllers/AccountController');
 const CandidateController = require('../controllers/CandidateController');
 const CandidateValidator = require('../controllers/validator/CandidateValidator');
-const UserAuth = require('../helpers/UserAuth');
+const UserAuth = require('../middleware/UserAuth');
 
 module.exports = () => {
     router.get('/', HomeController.showJobOffer);

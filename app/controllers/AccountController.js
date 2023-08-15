@@ -3,7 +3,7 @@ const multer = require('multer');
 const Storage = require('../helpers/Storage');
 const User = mongoose.model('User');
 const JobOffer = mongoose.model('JobOffer');
-const UserAuth = require('../helpers/UserAuth');
+const UserAuth = require('../middleware/UserAuth');
 const { validationResult } = require('express-validator');
 
 exports.dashboard = async (req, res) => {

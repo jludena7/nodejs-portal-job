@@ -1,5 +1,5 @@
 <main class="pj-container">
-    <form action="/account/update-profile" method="post" class="default-form" enctype="multipart/form-data">
+    <form action="/account/update-profile?_csrf={{_csrfToken}}" method="post" class="default-form" enctype="multipart/form-data">
         <div class="label">
             <label for="name">Name</label>
             <input value="{{user.name}}" type="text" name="name" id="name">

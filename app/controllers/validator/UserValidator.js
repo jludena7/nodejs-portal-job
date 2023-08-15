@@ -21,6 +21,7 @@ exports.updateValidator = async (req, res, next) => {
 
 exports.forgotPassword = async (req, res, next) => {
     await check('email').isEmail().withMessage('Email format invalid').stripLow().run(req);
+
     return next();
 };
 
