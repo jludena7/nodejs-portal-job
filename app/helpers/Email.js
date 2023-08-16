@@ -27,10 +27,10 @@ exports.send = async (options) => {
     const optionsEmail = {
         from:'PortalJob <noreply@portaljob.com',
         to: options.user.email,
-        subject : options.subject,
+        subject: options.subject,
         template: options.template,
         context: {
-            urlResetLink : options.urlResetLink
+            urlResetLink: options.urlResetLink
         },
     };
 

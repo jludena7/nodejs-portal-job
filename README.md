@@ -13,4 +13,5 @@ Copy and rename the file from '.env.dist' to '.env', after that add the required
 - Handlebars
 - MongoDb
 
-
+## Unit Test Example
+- Run >> npm test ./tests/helpers/email.test.js
