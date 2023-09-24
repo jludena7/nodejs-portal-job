@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const JobOffer = mongoose.model('JobOffer');
+const dbDriver = require('../helpers/DbDriver');
+const JobOffer = dbDriver.JobOffer;
 
 exports.showJobOffer = async (req, res, next) => {
     const jobOfferList = await JobOffer.find().lean();

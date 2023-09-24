@@ -1,16 +1,14 @@
-const mongoose = require('mongoose');
-require('./app/config/models');
+const dbDriver = require('./app/helpers/DbDriver');
 const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const router = require('./app/routers/backend');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const connectMongo = require('connect-mongo');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const httpError = require('http-errors');
 const passport = require('./app/helpers/Passport');
+const sessionDriver = require('./app/helpers/SessionDriver');
 const csrf = require('csurf');
 require('dotenv').config({path: '.env'});
 
@@ -36,16 +34,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    key: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 15 * 60000 }, // store for 15 minutes
-    store: connectMongo.create({
-        client: mongoose.connection.getClient()
-    })
-}));
+app.use(sessionDriver(dbDriver.mongoose));
 
 app.use(passport.initialize({}));
 app.use(passport.session({}));
@@ -68,4 +57,5 @@ app.use((error, req, res, next) => {
     res.status(status);
     return res.render('error');
 });
+
 module.exports = app;

@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
 const { validationResult } = require('express-validator');
 const UserAuth = require('../middleware/UserAuth');
-const JobOffer = mongoose.model('JobOffer');
+const dbDriver = require('../helpers/DbDriver');
+const JobOffer = dbDriver.JobOffer;
 
 exports.create = async (req, res) => {
     res.render('job-offer/create', {

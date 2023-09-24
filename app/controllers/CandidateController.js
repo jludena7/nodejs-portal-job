@@ -1,8 +1,9 @@
 const {validationResult} = require('express-validator');
-const JobOffer = require('../models/JobOffer');
 const Storage = require('../helpers/Storage');
 const multer = require('multer');
 const UserAuth = require('../middleware/UserAuth');
+const dbDriver = require('../helpers/DbDriver');
+const JobOffer = dbDriver.JobOffer;
 
 const upload = multer(Storage.defineActions().cv).single('cv');
 exports.uploadCV  =  (req, res, next) => {

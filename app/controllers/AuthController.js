@@ -1,9 +1,10 @@
 const passport = require('passport');
-const User = require('../models/User');
 const crypto = require('crypto');
 const sendEmail = require('../helpers/Email');
-const {validationResult} = require("express-validator");
+const {validationResult} = require('express-validator');
 require('dotenv').config({path: '.env'});
+const dbDriver = require('../helpers/DbDriver');
+const User = dbDriver.User;
 
 exports.createLogin = async (req, res) => {
     res.render('auth/create-login', {

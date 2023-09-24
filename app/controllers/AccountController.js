@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
 const multer = require('multer');
 const Storage = require('../helpers/Storage');
-const User = mongoose.model('User');
-const JobOffer = mongoose.model('JobOffer');
+const dbDriver = require('../helpers/DbDriver');
 const UserAuth = require('../middleware/UserAuth');
 const { validationResult } = require('express-validator');
+const User = dbDriver.User;
+const JobOffer = dbDriver.JobOffer;
 
 exports.dashboard = async (req, res) => {
     const jobOfferList = await JobOffer.find({author: req.user._id}).lean();
