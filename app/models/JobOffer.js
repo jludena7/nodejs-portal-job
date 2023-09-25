@@ -1,62 +1,62 @@
-const slug = require('slug');
-const shortid = require('shortid');
+const slug = require('slug')
+const shortid = require('shortid')
 
 module.exports = (mongoose) => {
-    const JobOfferSchema = new mongoose.Schema({
-        title: {
-            type: String,
-            required: 'Title is required',
-            trim: true
-        },
-        company: {
-            type: String,
-            required: 'Company is required',
-            trim: true
-        },
-        location: {
-            type: String,
-            required: 'Location is required',
-            trim: true
-        },
-        salary: {
-            type: String,
-            default: 0,
-            trim: true
-        },
-        contract: {
-            type: String,
-            trim: true
-        },
-        description: {
-            type: String,
-            required: 'Description is required',
-            trim: true
-        },
-        url: {
-            type: String,
-            lowercase: true
-        },
-        skills: [String],
-        candidates: [{
-            name: String,
-            email: String,
-            cv: String
-        }],
-        author : {
-            type: mongoose.Schema.ObjectId,
-            ref: 'User',
-            required: 'Author is required'
-        }
-    });
+  const JobOfferSchema = new mongoose.Schema({
+    title: {
+      type: String,
+      required: 'Title is required',
+      trim: true
+    },
+    company: {
+      type: String,
+      required: 'Company is required',
+      trim: true
+    },
+    location: {
+      type: String,
+      required: 'Location is required',
+      trim: true
+    },
+    salary: {
+      type: String,
+      default: 0,
+      trim: true
+    },
+    contract: {
+      type: String,
+      trim: true
+    },
+    description: {
+      type: String,
+      required: 'Description is required',
+      trim: true
+    },
+    url: {
+      type: String,
+      lowercase: true
+    },
+    skills: [String],
+    candidates: [{
+      name: String,
+      email: String,
+      cv: String
+    }],
+    author: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: 'Author is required'
+    }
+  })
 
-    JobOfferSchema.pre('save', function (next) {
-        const url = slug(this.title);
-        this.url = `${url}-${shortid.generate()}`;
+  JobOfferSchema.pre('save', function (next) {
+    const url = slug(this.title)
+    this.url = `${url}-${shortid.generate()}`
 
-        next();
-    });
+    next()
+  })
 
-    JobOfferSchema.index({title : 'text'});
+  JobOfferSchema.index({ title: 'text' })
 
-    return mongoose.model('JobOffer', JobOfferSchema);
+  return mongoose.model('JobOffer', JobOfferSchema)
 }
