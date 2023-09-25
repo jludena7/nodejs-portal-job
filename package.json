@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
-    "lint": "eslint app/**/*.js",
+    "lint": "eslint app/**/*.js app.js index.js",
     "watch": "webpack --mode development"
   },
   "author": "jludena7",
