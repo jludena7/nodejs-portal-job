@@ -8,7 +8,7 @@ RUN npm cache clean --force
 
 # If you are building your code for production
 # RUN npm ci --omit=dev
-RUN npm ci
+RUN npm install
 
 COPY . .
 

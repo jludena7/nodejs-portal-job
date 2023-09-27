@@ -3,6 +3,7 @@ services:
   mongo-db-one:
     ports:
       - '27018:27017'
+    env_file: ./env.docker
     image: mongo:latest
     container_name: mongo-db-one
     restart: always
@@ -10,9 +11,9 @@ services:
       options:
         max-size: 1g
     environment:
-      - MONGO_INITDB_DATABASE=db_jobs
-      - MONGO_INITDB_ROOT_USERNAME=mongo_admin
-      - MONGO_INITDB_ROOT_PASSWORD=mongo_admin_pass
+      - MONGO_INITDB_DATABASE=${DOCKER_DB_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${DOCKER_DB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DOCKER_DB_ROOT_PASSWORD}
     expose:
       - '27018'
     volumes:

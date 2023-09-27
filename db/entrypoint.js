@@ -1,16 +1,16 @@
 console.log('>>Start set entrypoint script')
 // eslint-disable-next-line no-undef
 const connAdmin = db.getSiblingDB('admin')
-connAdmin.auth('mongo_admin', 'mongo_admin_pass')
+connAdmin.auth(process.env.DOCKER_DB_ROOT_USERNAME, process.env.DOCKER_DB_ROOT_PASSWORD)
 
 // create and move to your new database
-const connPortal = connAdmin.getSiblingDB('db_jobs')
+const connPortal = connAdmin.getSiblingDB(process.env.DOCKER_DB_NAME)
 connPortal.createUser({
-  user: 'mongo_user',
-  pwd: 'mongo_user_pass',
+  user: process.env.DOCKER_DB_USER,
+  pwd: process.env.DOCKER_DB_PASSWORD,
   roles: [{
     role: 'readWrite',
-    db: 'db_jobs'
+    db: process.env.DOCKER_DB_NAME
   }]
 })
 
