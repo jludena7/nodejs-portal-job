@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  mongo-db-one:
+    ports:
+      - '27018:27017'
+    image: mongo:latest
+    container_name: mongo-db-one
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      - MONGO_INITDB_DATABASE=db_jobs
+      - MONGO_INITDB_ROOT_USERNAME=mongo_admin
+      - MONGO_INITDB_ROOT_PASSWORD=mongo_admin_pass
+    expose:
+      - '27018'
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+  app:
+    container_name: app-container-one
+    image: app-container-one
+    depends_on:
+      - mongo-db-one
+    links:
+      - mongo-db-one
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:3000"
+    volumes:
+      - "./db:/usr/code/db"
+      - "./app:/usr/code/app"
+      - "./public:/usr/code/public"
+      - "./app.js:/usr/code/app.js"
+      - "./index.js:/usr/code/index.js"
+volumes:
+  mongo-db-one:
+    driver: local

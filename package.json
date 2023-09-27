@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node ./index.js",
+    "local": "node ./index.js",
     "dev": "nodemon ./index.js",
     "lint": "eslint app/**/*.js app.js index.js",
     "watch": "webpack --mode development"
@@ -35,7 +35,7 @@
     "passport-local": "^1.0.0",
     "shortid": "^2.2.16",
     "slug": "^8.2.3",
-    "sweetalert2": "^11.7.20"
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",

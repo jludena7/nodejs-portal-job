@@ -58,5 +58,5 @@ module.exports = (mongoose) => {
 
   JobOfferSchema.index({ title: 'text' })
 
-  return mongoose.model('JobOffer', JobOfferSchema)
+  return mongoose.model('JobOffer', JobOfferSchema, 'job_offers')
 }

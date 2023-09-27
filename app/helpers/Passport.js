@@ -1,7 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const dbDriver = require('../helpers/DbDriver')
-const User = dbDriver.user
+const User = dbDriver.User
 
 passport.use(new LocalStrategy(
   {
