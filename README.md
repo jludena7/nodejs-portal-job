@@ -10,9 +10,9 @@ Once the following steps are done, you will be able to test the project.
 
     ```docker build -t app-container-one```
 
-- Initialize containers
+- Initialize containers with config file
 
-    ```docker-compose up -d```
+    ```docker-compose --env-file=env.docker up -d```
 
 ## Open the project in the browser
 
