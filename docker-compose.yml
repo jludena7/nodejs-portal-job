@@ -3,7 +3,7 @@ services:
   mongo-db-one:
     ports:
       - '27018:27017'
-    env_file: ./env.docker
+    env_file: ./.env
     image: mongo:latest
     container_name: mongo-db-one
     restart: always
